@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+	install:
+		runtime-versions:
+			java: corretto21
+	pre-build:
+		commands:
+			- echo In the pre_build phase...
+			- mvn test
+	build:
+		commands: 
+			- echo Build started on `date`
+			- mvn package
+	post-build:
+		commands:
+			- echo Build completed on `date`
+artifacts:
+	files:
+		- target/*.jar
+	discard-paths: yes
