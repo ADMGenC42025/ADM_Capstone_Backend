@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase started..."
+      - echo "Java version:"
+      - java -version
+      - echo "Maven version:"
+      - mvn -version
+      - echo "Pre-build phase completed."
+
+  build:
+    commands: 
+      - echo "Build phase started on `date`"
+      - echo "Listing project files:"
+      - ls -R
+      - echo "Running Maven package (skipping tests)..."
+      - mvn clean package -DskipTests
+      - echo "Build phase completed."
+
+  post_build:
+    commands:
+      - echo "Post-build phase started..."
+      - echo "Listing target directory contents:"
+      - ls -lh target/
+      - echo "Post-build phase completed."
+
+artifacts:
+  files:
+    - target/*.jar
+  discard-paths: yes
