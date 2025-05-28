@@ -18,6 +18,14 @@ public class PlaylistService {
         this.playlistRepo = playlistRepo;
     }
 
+    public Playlist createNewPlaylist(String playlistName){
+        Playlist temp = new Playlist();
+        temp.setTitle(playlistName);
+        return playlistRepo.save(temp);
+    }
+
+
+
     public Track addTrackToPlaylist(Long playlistId, Track track) {
         Playlist playlist = playlistRepo.findById(playlistId)
                 .orElseThrow(() -> new RuntimeException("Playlist not found"));
@@ -27,14 +35,16 @@ public class PlaylistService {
         return track;
     }
 
-    public Set<Track> getTracksByPlaylist(Long playlistId) {
-        Playlist playlist = playlistRepo.findById(playlistId)
+    public Set<Track> getTracksByPlaylist(Long id) {
+        Playlist playlist = playlistRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Playlist not found"));
         return playlist.getTracks();
     }
 
-    public void deleteTrackFromPlaylist(Long playlistId, Track track){
-        Playlist playlist = playlistRepo.findById(playlistId)
+
+
+    public void deleteTrackFromPlaylist(Long id, Track track){
+        Playlist playlist = playlistRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("PlayList not found"));
 
         playlist.deleteTrack(track);

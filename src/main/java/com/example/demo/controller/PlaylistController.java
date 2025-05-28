@@ -23,16 +23,20 @@ public class PlaylistController {
     }
 
     @PostMapping("/{playlistId}/tracks")
-    public ResponseEntity<Track> addTrackToPlaylist(
-            @PathVariable Long playlistId,
-            @RequestBody Track track) {
-        Track savedTrack = playlistService.addTrackToPlaylist(playlistId, track);
+    public ResponseEntity<Track> addTrackToPlaylist(@PathVariable Long id, @RequestBody Track track) {
+        Track savedTrack = playlistService.addTrackToPlaylist(id, track);
         return ResponseEntity.ok(savedTrack);
     }
 
     @GetMapping("/{playlistId}/tracks")
-    public ResponseEntity<Set<Track>> getTracksByPlaylist(@PathVariable Long playlistId) {
-        return ResponseEntity.ok(playlistService.getTracksByPlaylist(playlistId));
+    public ResponseEntity<Set<Track>> getTracksByPlaylist(@PathVariable Long id) {
+        return ResponseEntity.ok(playlistService.getTracksByPlaylist(id));
     }
+
+    @PostMapping("/addPlaylist")
+    public ResponseEntity<Playlist> addEmptyPlaylistWithTitle(@RequestParam String playlistTitle){
+        return ResponseEntity.ok(playlistService.createNewPlaylist(playlistTitle));
+    }
+
 }
 
