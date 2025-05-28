@@ -8,17 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
-//@RequestMapping("/api/explore")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin("*")
+@RequestMapping("/api/explore")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ExploreController {
 
     @Autowired
     private ExploreService exploreService;
 
-    //@GetMapping("/search-uploaded")
-    @GetMapping("search")
+    @GetMapping("/search-uploaded")
     public List<UploadedTrackDTO> searchUploadedTracks(@RequestParam String query) {
         return exploreService.searchUploadedTracks(query);
     }
