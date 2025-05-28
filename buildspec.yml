@@ -22,11 +22,11 @@ phases:
   post_build:
     commands:
       - echo "Post-build phase started..."
-      - echo "Contents of target directory:"
-      - find target/ -type f
+      - echo "Searching for all .jar files:"
+      - find . -name "*.jar"
       - echo "Post-build phase completed."
 
 artifacts:
   files:
-    - '**/target/*.jar'
+    - '**/*.jar'
   discard-paths: yes
