@@ -11,7 +11,7 @@ public class User {
 
     private String name;
     private String email;
-    private String password;
+   
 
     // Getters and setters
     public String getId() {
@@ -38,12 +38,5 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
 
